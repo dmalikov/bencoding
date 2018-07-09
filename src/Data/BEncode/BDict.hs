@@ -70,6 +70,9 @@ instance Foldable BDictMap where
       go (Cons _ v xs) = f v `mappend` go xs
   {-# INLINE foldMap #-}
 
+instance Semigroup (BDictMap a) where
+  (<>) = Data.BEncode.BDict.union
+
 instance Monoid (BDictMap a) where
   mempty  = Data.BEncode.BDict.empty
   mappend = Data.BEncode.BDict.union
